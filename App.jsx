@@ -1,56 +1,37 @@
-import React, { useReducer, useState } from 'react'
-import Todo from './Todo.jsx'
-export const ACTIONS={
-  ADD_TODO: 'add-todo',
-  TOGGLE_TODO: 'toggle-todo',
-  DELETE_TODO: 'delete-todo'
-}
-function reducer(todos,action){
-  switch(action.type){
-    case ACTIONS.ADD_TODO:
-      return [...todos,newTodo(action.payload.name)]
-    case ACTIONS.TOGGLE_TODO:
-      return todos.map(todo=>{
-        if(todo.id ===action.payload.id){
-          return{...todo,complete: !todo.complete}
-        }
-        return todo
-      })
-    case ACTIONS.DELETE_TODO:
-      return todos.filter(todo=>todo.id !== action.payload.id)
-    default:
-      return todos
+function App(){
+/*  try{
+    let age=prompt("enter yout age")
+    age=Number.parseInt(age)
+    if(age>150){
+      throw new ReferenceError("This is probably not true")
+    }
+    console.log(harry)
+    throw new ReferenceError("Harry is not good")
+    }
+    catch(error){
+      console.log(error.name)
+      console.log(error.message)
+      console.log(error.stack)
+    }
+  console.log("The scirpt is still running")*/
+
+  const f=()=>{
+    try {
+    let a=0
+     console.log(program)
+    console.log("program ran successfully")
+  } catch (error) {
+      console.log("This is an error")      
   }
-}
-
-function newTodo(name){
-  return {id: Date.now(),name:name,complete:false,payload: {name: name}}
-}
-
-const App = () => {
-  const[todos,dispatch ]=useReducer(reducer,[])
-  const [name,setName]=useState('')
-
-  function handleSubmit(e){
-    e.preventDefault()
-    dispatch({type: ACTIONS.ADD_TODO,
-      payload: {name}
-    })
-    setName('')
+  finally{
+    console.log('I am a good boy')
+    //close the file
+    //exit loop
+    //write to lof files
+  }
   }
 
-  console.log(todos)
-
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={name} onChange={e=>setName(e.target.value)}/>
-      </form>
-      {todos.map(todo=>{
-        return <Todo key={todo.id} todo={todo} dispatch={dispatch}/>
-      })}
-    </div>
-  )
+  
 }
 
 export default App
