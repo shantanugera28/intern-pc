@@ -19,13 +19,20 @@ export default function App(){
     fetchProducts()
   },[])
 
+  const selectPageHandler=(selectedPage)=>{
+    if(selectedPage>=1 && 
+      selectedPage <=products.length/3 &&
+      selectedPage != page)
+    setPage(selectedPage);
+  };
+
   return (
     <div>
     {
       products.length>0 && (
         <div className="products">
         {
-          products.slice(0,6).map((prod)=>{
+          products.slice(page*3-3,page*3).map((prod)=>{
             return(
               <span className='products__single' key={prod.id}>
                 <img src={prod.thumbnail} alt={prod.title} />
@@ -34,6 +41,27 @@ export default function App(){
             )
           })
         }
+      </div>
+    )}
+    {
+      products.length>0 &&(
+      <div className='pagination'>
+        <span onClick={()=>selectPageHandler(page-1)}
+          className={page>1  ? "":"pagination-disabled"}  
+        >⬅️</span>
+        {
+          [...Array(products.length/3)].map((_,i)=>{
+            return <span 
+                className={page===i+1 ?"pagination-selected":""}
+                onClick={()=>selectPageHandler((i+1))} 
+                key={i}>
+                  {i+1}
+                </span>
+          })
+        }
+        <span onClick={()=>selectPageHandler(page+1)}
+          className={page<products.length /3 ? "":"pagination-disabled"}
+        >➡️</span>
       </div>
     )}
   </div>);
