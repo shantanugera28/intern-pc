@@ -89,3 +89,20 @@ button:focus-visible {
   object-fit: cover;
   margin-bottom: 1px;
 }
+.pagination{
+  padding: 10px;
+  margin: 15px 0;
+  display: flex;
+  justify-content: center;
+}
+.pagination>span{
+  padding: 15px 20px;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+.pagination-selected{
+  background-color: rgb(220, 220, 220);
+}
+.pagination-disabled{
+  opacity: 0;
+}
